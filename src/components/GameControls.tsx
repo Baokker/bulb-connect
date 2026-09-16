@@ -63,16 +63,36 @@ export function GameControls({
           </button>
         )}
         {started && !won && (
-          <div
-            className="live-stars"
-            aria-label={`当前预计 ${starsForTime(difficulty, elapsedSeconds)} 星`}
-          >
-            <span className="star-bright">
-              {'★'.repeat(starsForTime(difficulty, elapsedSeconds))}
-            </span>
-            <span className="star-dim">
-              {'★'.repeat(3 - starsForTime(difficulty, elapsedSeconds))}
-            </span>
+          <div className="stars-block">
+            <div
+              className="live-stars"
+              aria-label={`当前预计 ${starsForTime(difficulty, elapsedSeconds)} 星`}
+            >
+              <span className="star-bright">
+                {'★'.repeat(starsForTime(difficulty, elapsedSeconds))}
+              </span>
+              <span className="star-dim">
+                {'★'.repeat(3 - starsForTime(difficulty, elapsedSeconds))}
+              </span>
+            </div>
+            {(() => {
+              const cfg = DIFFICULTIES[difficulty];
+              if (elapsedSeconds < cfg.starThreeSeconds) {
+                return (
+                  <div className="star-countdown">
+                    距 2★ 还剩 {formatTime(cfg.starThreeSeconds - elapsedSeconds)}
+                  </div>
+                );
+              }
+              if (elapsedSeconds < cfg.starTwoSeconds) {
+                return (
+                  <div className="star-countdown">
+                    距 1★ 还剩 {formatTime(cfg.starTwoSeconds - elapsedSeconds)}
+                  </div>
+                );
+              }
+              return <div className="star-countdown star-timeout">已超时，当前 1★</div>;
+            })()}
           </div>
         )}
       </div>
