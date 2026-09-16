@@ -202,9 +202,18 @@
   outline-offset: 2px;
 }
 
-.playing-hint {
-  font-size: 0.85rem;
-  color: #4ade80;
+.playing-hint,
+.live-stars {
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+}
+
+.live-stars .star-bright {
+  color: #fbbf24;
+}
+
+.live-stars .star-dim {
+  color: #374151;
 }
 
 .controls {

@@ -1,5 +1,10 @@
 import type { Difficulty } from '../game/types';
-import { DIFFICULTIES, DIFFICULTY_ORDER, formatTime } from '../game/types';
+import {
+  DIFFICULTIES,
+  DIFFICULTY_ORDER,
+  formatTime,
+  starsForTime,
+} from '../game/types';
 
 type Props = {
   difficulty: Difficulty;
@@ -58,7 +63,17 @@ export function GameControls({
           </button>
         )}
         {started && !won && (
-          <span className="playing-hint">游戏进行中…</span>
+          <div
+            className="live-stars"
+            aria-label={`当前预计 ${starsForTime(difficulty, elapsedSeconds)} 星`}
+          >
+            <span className="star-bright">
+              {'★'.repeat(starsForTime(difficulty, elapsedSeconds))}
+            </span>
+            <span className="star-dim">
+              {'★'.repeat(3 - starsForTime(difficulty, elapsedSeconds))}
+            </span>
+          </div>
         )}
       </div>
 
