@@ -21,10 +21,11 @@ type Props = {
   tile: TileType;
   row: number;
   col: number;
+  disabled?: boolean;
   onRotate: () => void;
 };
 
-export function Tile({ tile, row, col, onRotate }: Props) {
+export function Tile({ tile, row, col, disabled, onRotate }: Props) {
   const isPower = tile.kind === 'power';
   const wireColor = tile.powered ? '#fbbf24' : '#4b5563';
   const label = `第 ${row + 1} 行第 ${col + 1} 列，${KIND_LABELS[tile.kind]}，${
@@ -93,6 +94,7 @@ export function Tile({ tile, row, col, onRotate }: Props) {
       className="tile"
       aria-label={label}
       onClick={onRotate}
+      disabled={disabled}
     >
       {svg}
     </button>

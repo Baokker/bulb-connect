@@ -3,10 +3,11 @@ import { Tile } from './Tile';
 
 type Props = {
   board: BoardType;
+  disabled?: boolean;
   onRotate: (row: number, col: number) => void;
 };
 
-export function Board({ board, onRotate }: Props) {
+export function Board({ board, disabled, onRotate }: Props) {
   return (
     <div className="board" role="grid" aria-label="游戏棋盘">
       {board.map((row, r) => (
@@ -17,6 +18,7 @@ export function Board({ board, onRotate }: Props) {
               tile={tile}
               row={r}
               col={c}
+              disabled={disabled}
               onRotate={() => onRotate(r, c)}
             />
           ))}
