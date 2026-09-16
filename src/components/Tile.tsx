@@ -59,10 +59,22 @@ export function Tile({ tile, row, col, onRotate }: Props) {
         />
       )}
       {tile.kind === 'power' && (
-        <polygon
-          points="50,28 64,50 55,50 60,72 38,50 47,50"
-          fill={tile.powered ? '#fde047' : '#93c5fd'}
-        />
+        <>
+          <circle
+            cx={50}
+            cy={50}
+            r={25}
+            fill="#0f172a"
+            stroke="#38bdf8"
+            strokeWidth={2.5}
+          />
+          <polygon
+            points="50,31 62,48 53,48 57,70 40,52 49,52"
+            fill="#fde047"
+            stroke="#f59e0b"
+            strokeWidth={1}
+          />
+        </>
       )}
     </svg>
   );
